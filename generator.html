@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enhanced Fortune Generator</title>
+  <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+  <h1>Fortune Generator</h1>
+  <p>Enter your name to discover your personalized fortune!</p>
+  <input type="text" id="nameInput" placeholder="Your name here" />
+  <button id="generateBtn">Get Your Fortune</button>
+  <button id="restyleBtn">Change Style</button>
+  <div id="output"></div>
+
+  <script>
+    const fortunes = [
+      "You will have a magical day full of possibilities!",
+      "An exciting opportunity is coming your way.",
+      "Luck is on your side take that leap of faith!",
+      "A kind word will brighten someone's day maybe yours!",
+      "Your dreams are closer than you think!",
+      "Today is a day for adventure step outside your comfort zone!",
+      "Hard work pays off your efforts will be recognized soon.",
+      "Cherish the little moments they lead to the big ones!",
+      "A smile from a stranger will brighten your day.",
+      "You are capable of amazing things believe in yourself!"
+    ];
+
+    const generate = () => {
+      const nameInput = document.getElementById("nameInput").value.trim();
+      const outputDiv = document.getElementById("output");
+
+      if (!nameInput) {
+        alert("Please enter a valid name!");
+        return;
+      }
+      if (nameInput.length < 2) {
+        alert("Name must be at least 2 characters long.");
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * fortunes.length);
+      const selectedFortune = fortunes[randomIndex];
+      outputDiv.textContent = `${nameInput}, your fortune is: "${selectedFortune}"`;
+
+      restyle();
+    };
+
+    const restyle = () => {
+      const output = document.getElementById("output");
+
+      output.style.color = `hsl(${Math.random() * 360}, 70%, 50%)`; // Random hue for vibrant color
+      output.style.fontSize = `${Math.floor(Math.random() * 20 + 16)}px`; // Font size between 16px and 36px
+      output.style.transform = `rotate(${Math.random() * 10 - 5}deg)`; // Slight rotation for quirkiness
+      output.style.backgroundColor = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.2)`; // Light random background color
+      output.style.padding = `${Math.floor(Math.random() * 20 + 10)}px`; // Random padding between 10px and 30px
+      output.style.borderRadius = `${Math.floor(Math.random() * 50)}%`; // Rounded borders
+      output.style.transition = "all 0.5s ease"; // Smooth transitions
+    };
+
+    document.getElementById("generateBtn").addEventListener("click", generate);
+    document.getElementById("restyleBtn").addEventListener("click", restyle);
+  </script>
+</body>
+</html>
